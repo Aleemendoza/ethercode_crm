@@ -6,6 +6,7 @@ export const env = {
   AGENT_SECRET: process.env.AGENT_SECRET,
   NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 };
 
 export function requireServerEnv(name: keyof typeof env): string {
