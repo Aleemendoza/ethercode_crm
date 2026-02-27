@@ -7,6 +7,7 @@ const items = [
   ["/pipeline", "Pipeline"],
   ["/tasks", "Tareas"],
   ["/automations", "Automatizaciones"],
+  ["/agents", "Agents"],
   ["/settings", "Settings"]
 ] as const;
 
