@@ -6,8 +6,11 @@
     "apps/*"
   ],
   "scripts": {
-    "lint": "echo 'lint placeholder'",
-    "typecheck": "echo 'typecheck placeholder'",
-    "test": "echo 'test placeholder'"
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm --filter web lint",
+    "typecheck": "pnpm --filter web exec tsc --noEmit",
+    "test": "node --check scripts/smoke-test.mjs"
+
   }
 }
