@@ -11,6 +11,5 @@
     "lint": "pnpm --filter web lint",
     "typecheck": "pnpm --filter web exec tsc --noEmit",
     "test": "node --check scripts/smoke-test.mjs"
-
   }
 }
