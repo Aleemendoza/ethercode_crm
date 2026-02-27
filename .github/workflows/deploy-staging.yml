@@ -1,0 +1,29 @@
+name: deploy-staging
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Supabase migration (staging)
+        run: pnpm supabase db push --project-ref "$SUPABASE_PROJECT_REF_STAGING"
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      - name: Seed staging
+        run: pnpm supabase db execute --project-ref "$SUPABASE_PROJECT_REF_STAGING" --file supabase/seed.sql
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      - name: Deploy to Vercel (staging)
+        run: pnpm dlx vercel deploy --token "$VERCEL_TOKEN" --scope "$VERCEL_SCOPE" --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}

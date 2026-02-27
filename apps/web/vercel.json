@@ -1,0 +1,7 @@
+{
+  "crons": [
+    { "path": "/api/cron/poll-events", "schedule": "*/10 * * * *" },
+    { "path": "/api/cron/job-runner", "schedule": "0 * * * *" },
+    { "path": "/api/cron/nightly", "schedule": "30 2 * * *" }
+  ]
+}

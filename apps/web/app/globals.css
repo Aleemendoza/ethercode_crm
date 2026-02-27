@@ -1,0 +1,33 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: #0b1020; color: #e5e7eb; }
+a { color: inherit; text-decoration: none; }
+.layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.sidebar { border-right: 1px solid #1f2937; padding: 20px; background: #0f172a; }
+.sidebar h1 { margin: 0; font-size: 20px; }
+.sidebar p { color: #94a3b8; font-size: 13px; }
+nav { margin-top: 20px; display: grid; gap: 8px; }
+.navLink { padding: 10px 12px; border-radius: 10px; background: #111827; }
+.main { padding: 18px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; }
+.pill { font-size: 12px; border: 1px solid #334155; border-radius: 999px; padding: 6px 10px; }
+.grid { display: grid; gap: 12px; }
+.grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card { border: 1px solid #1f2937; background: #111827; padding: 14px; border-radius: 12px; }
+.muted { color: #94a3b8; margin: 0; font-size: 12px; }
+h3 { margin: 6px 0; font-size: 26px; }
+.table { display: grid; gap: 8px; }
+.tableHeader, .tableRow { display: grid; grid-template-columns: 1.2fr 1fr .8fr .5fr .8fr .8fr; gap: 8px; padding: 10px; border-radius: 10px; }
+.tableHeader { color: #94a3b8; font-size: 12px; }
+.tableRow { background: #0f172a; border: 1px solid #1f2937; }
+.stack { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+.hint { color: #9ca3af; font-size: 12px; }
+.kanban { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.column { background: #0f172a; border: 1px solid #1f2937; border-radius: 12px; padding: 10px; min-height: 220px; }
+.badge { font-size: 11px; padding: 4px 8px; border: 1px solid #334155; border-radius: 999px; }
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: 0; border-bottom: 1px solid #1f2937; }
+  .grid.cols-4, .grid.cols-2, .kanban { grid-template-columns: 1fr; }
+}
