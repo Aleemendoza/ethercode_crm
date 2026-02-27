@@ -1,0 +1,30 @@
+name: deploy-production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  approve-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Run production migration (manual approval by environment gate)
+        run: pnpm supabase db push --project-ref "$SUPABASE_PROJECT_REF_PRODUCTION"
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      - name: Deploy to Vercel (production)
+        run: pnpm dlx vercel deploy --token "$VERCEL_TOKEN" --scope "$VERCEL_SCOPE" --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
+      - name: Smoke tests
+        run: node scripts/smoke-test.mjs
+        env:
+          APP_BASE_URL: ${{ vars.APP_BASE_URL }}
