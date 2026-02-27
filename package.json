@@ -1,0 +1,13 @@
+{
+  "name": "ethercode-crm",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "lint": "echo 'lint placeholder'",
+    "typecheck": "echo 'typecheck placeholder'",
+    "test": "echo 'test placeholder'"
+  }
+}
